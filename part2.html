@@ -224,7 +224,7 @@
                     bgNoise.volume.value = -28; 
 
                     heartbeatSynth = new Tone.MembraneSynth({ pitchDecay: 0.05, octaves: 2, envelope: { attack: 0.01, decay: 0.4, sustain: 0.01, release: 1.2 } }).toDestination();
-                    heartbeatSynth.volume.value = 5; // 心跳稍微調弱，不搶鋼琴風采
+                    heartbeatSynth.volume.value = -1; // 心跳稍微調弱，不搶鋼琴風采
 
                     // 特效音
                     earRingSynth = new Tone.Oscillator(7500, "sine").toDestination(); earRingSynth.volume.value = -Infinity;
@@ -243,7 +243,7 @@
                     bitCrusher = new Tone.BitCrusher(8).toDestination();
                     bitCrusher.wet.value = 0; 
                     finalHeartbeat = new Tone.MembraneSynth({ pitchDecay: 0.1, octaves: 2, envelope: { attack: 0.05, decay: 0.8, sustain: 0, release: 2 } }).connect(bitCrusher).connect(massiveReverb);
-                    finalHeartbeat.volume.value = 5;
+                    finalHeartbeat.volume.value = -1;
 
                     // 結局釋放和弦
                     heavenlyChorus = new Tone.Chorus(4, 2.5, 0.5).connect(massiveReverb).start();
@@ -772,8 +772,8 @@
                     let fadeVol = 0;
                     let fadeInterval = setInterval(() => {
                         fadeVol += 0.05;
-                        if (fadeVol >= 0.7) { // 設定配樂最高音量 (0~1)
-                            bgm.volume = 0.7;
+                        if (fadeVol >= 1.0) { // 設定配樂最高音量 (0~1)
+                            bgm.volume = 1.0;
                             clearInterval(fadeInterval);
                         } else {
                             bgm.volume = fadeVol;
